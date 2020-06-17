@@ -1,0 +1,177 @@
+body {
+    /* background: rgb(247, 223, 248); */
+    background: linear-gradient(124deg,  #76d586, #7edadf, #8c74d6,  #76d586, #7edadf, #9febab);
+    background-size: 1800% 1800%;
+    animation: rainbow 18s ease infinite;
+    text-align: center;
+    padding: 0 25px;
+    font-family: 'roboto', sans-serif;
+}
+
+@keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+
+#main {
+    width: 600px;
+    margin: auto;
+    text-align: left;
+    background: rgba(119, 116, 121, 0.4);
+    padding: 50px 60px;
+    border: solid #ddd;
+    border-width: 1px 2px 2px 2px;
+    color: white;
+    letter-spacing: 0.10em;
+}
+
+#chats {
+    width: 600px;
+    margin: auto;
+    text-align: left;
+    background: rgba(119, 116, 121, 0.4);
+    padding: 50px 60px;
+    border: solid #ddd;
+    border-width: 1px 2px 2px 2px;
+    color: rgb(49, 47, 47);
+    font-size: 15px;;
+
+}
+
+
+#main h1 {
+    margin-top: 0;
+    font-size: 35px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+#main h1 span {
+    font-style:italic;
+}
+
+#main ul {
+    padding-left: 20px;
+}
+
+#main .error {
+    border: 1px solid red;
+    background: #FDEFF0;
+    padding: 20px;
+}
+
+#main .success {
+    margin-top: 25px;
+}
+
+#main .success code {
+    font-size: 12px;
+    color: green;
+    line-height: 13px;
+}
+
+form {
+    padding: 20px;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+form input[type=text] {
+    margin-right: 10px;
+    width: 70%;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.chat {
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #eee;
+}
+
+.text {
+    margin: 5px 5px;
+    font-size: 15px;
+    padding: 12px;
+    background-color: rgba(213, 221, 164, 0.4)
+}
+
+.chat .username {
+    margin: 3px 5px;
+    font-weight: 800;
+}
+
+.chat:hover {
+    background-color: #ddd;
+}
+
+.spinner {
+    float: right;
+    height: 46px;
+    margin-bottom: 5px;
+}
+
+.spinner img {
+    padding: 10px;
+}
+
+.friend {
+    color: #fff;
+    background-color: #0090da;
+}
+
+
+
+.addroom, .refresh {
+    margin-top: 4px;
+    margin-left: 10px;
+    padding: 6px;
+    border: 1px solid white;
+    background-color: rgb(110, 76, 1);
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    outline: none;
+    text-transform: uppercase;
+  }
+
+  .submit {
+    margin-top: 4px;
+    margin-left: 10px;
+    padding: 6px;
+    border: 1px solid white;
+    background-color: rgb(211, 111, 5);
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+    outline: none;
+    text-transform: uppercase;
+  }
+
+  .addroom:hover, .refresh:hover, .submit:hover {
+    margin-top: 4px;
+    margin-left: 10px;
+    border: 1px dotted white;
+    background-color: rgb(86, 19, 153);
+    color: white;
+    text-decoration: none;
+  }
+
+  select {
+    margin-top: 4px;
+    padding: 6px;
+    border: 1px solid white;
+    background-color: rgb(247, 239, 224);
+    color: rgb(58, 58, 58);
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 13px;
+    outline: none;
+
+  }
