@@ -34,12 +34,3 @@ ALTER TABLE `messages` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `friends` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `friends` ADD FOREIGN KEY (friend_id) REFERENCES `users` (`id`);
 ALTER TABLE `rooms` ADD FOREIGN KEY (message_id) REFERENCES `messages` (`id`);
-
-
-
-
-
-/*  Execute this file from the command line by typing:
- *    mysql -u root < server/schema.sql
- *  to create the database and the tables.*/
-
