@@ -12,13 +12,13 @@ CREATE TABLE `messages`(
   `id` INT AUTO_INCREMENT,
   `text` TEXT,
   `user_id` INT,
+  'room_id' INT,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE `rooms`(
   `id` INT AUTO_INCREMENT,
   `name` VARCHAR(100),
-  `message_id` INT,
   PRIMARY KEY(id)
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE `friends`(
 ALTER TABLE `messages` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `friends` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `friends` ADD FOREIGN KEY (friend_id) REFERENCES `users` (`id`);
-ALTER TABLE `rooms` ADD FOREIGN KEY (message_id) REFERENCES `messages` (`id`);
+ALTER TABLE `messages` ADD FOREIGN KEY (room_id) REFERENCES `room` (`id`);
 
 
 
