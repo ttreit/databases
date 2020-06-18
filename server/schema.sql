@@ -33,7 +33,7 @@ CREATE TABLE `friends`(
 ALTER TABLE `messages` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `friends` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `friends` ADD FOREIGN KEY (friend_id) REFERENCES `users` (`id`);
-ALTER TABLE `messages` ADD FOREIGN KEY (room_id) REFERENCES `room` (`id`);
+ALTER TABLE `messages` ADD FOREIGN KEY (room_id) REFERENCES `rooms` (`id`);
 
 
 
