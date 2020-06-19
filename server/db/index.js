@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-  host:'localhost',
+  host: 'localhost',
   user: 'student',
   password: 'student',
   database: 'chat'
@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 connection.connect();
 
 connection.query('SELECT * FROM users', (err, rows, fields) => {
-  if (err) {throw err;}
+  if (err) { throw err; }
   console.log('rows: ', rows);
   //console.log('fields: ', fields);
 });
