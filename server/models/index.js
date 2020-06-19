@@ -5,9 +5,9 @@ module.exports = {
     get: function () {
       //connect to DB?? Or already connected?
       //get all messages SELECT * FROM messages
-      const data = null;
+      const data = 'check 1 check';
       console.log('test data: ', data);
-      return 'This is a test of the models get messages function';
+      return data;
 
     },
     post: function () {} // a function which can be used to insert a message into the database
