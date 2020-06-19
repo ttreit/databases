@@ -1,3 +1,4 @@
 INSERT INTO users (name) VALUES ('Wade'), ('Tammy'), ('Kenny');
 INSERT INTO rooms (name) VALUES ('Hello'), ('Lobby'), ('Kitchen Sink');
 INSERT INTO messages (text, user_id, room_id) VALUES ('hi I eat apples', 2, 3);
+INSERT INTO messages (text, user_id, room_id) VALUES ('If a musician can trip over it, they will', 3, 1);
