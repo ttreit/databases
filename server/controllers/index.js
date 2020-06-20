@@ -10,7 +10,9 @@ module.exports = {
 
 
     post: function (req, res) {
-      models.messages.post(req.body);
+      models.messages.post(req.body, () => {
+        res.status(200).end();
+      });
     } // a function which handles posting a message to the database
   },
 
@@ -22,8 +24,9 @@ module.exports = {
       });
     },
     post: function (req, res) {
-      models.users.post(req.body);
-      res.end();
+      models.users.post(req.body, () => {
+        res.status(200).end();
+      });
     }
   }
 };
