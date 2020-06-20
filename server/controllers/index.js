@@ -13,11 +13,10 @@ module.exports = {
       models.messages.post(req.body, () => {
         res.status(200).end();
       });
-    } // a function which handles posting a message to the database
+    }
   },
 
   users: {
-    // Ditto as above
     get: function (req, res) {
       models.users.get((results) => {
         res.end(JSON.stringify(results));
@@ -28,6 +27,17 @@ module.exports = {
         res.status(200).end();
       });
     }
+  },
+
+  test: {
+    get: function (req, res) {
+      models.test.get((results) => {
+        res.status(200).end();
+      });
+
+    }
   }
+
+
 };
 

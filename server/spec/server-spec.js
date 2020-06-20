@@ -65,10 +65,25 @@ describe('Persistent Node Chat Server', function() {
     });
   });
 
+  it('Should output all users from the DB', function(done) {
+    var queryString = "SELECT * FROM users";
+    var queryArgs = [];
+    dbConnection.query(queryString, queryArgs, function (err) {
+      if (err) { throw err; }
+      request('http://127.0.0.1:3000/classes/users', function(err, results, body) {
+        var userLog = JSON.parse(body);
+        console.log('***** userLog: ', userLog);
+
+        expect(userLog[0].username).to.not.equal('');
+        done();
+      });
+    });
+  });
+
   it('Should output all messages from the DB', function(done) {
     // Let's insert a message into the db
-    var queryString = "INSERT INTO messages (text, user_id, room_id) VALUES (?, ?, ?);";  //does ; need to end query???
-    var queryArgs = ['Men like you can never change!', 1, 4];
+    var queryString = "INSERT INTO messages (text, user_id, room_id) VALUES (?, ?, ?)";
+    var queryArgs = ['Men like you can never change!', 13, 4];
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave
     // them up to you. */
@@ -81,7 +96,8 @@ describe('Persistent Node Chat Server', function() {
       request('http://127.0.0.1:3000/classes/messages', function(error, response, body) {
         var messageLog = JSON.parse(body);
         expect(messageLog[0].text).to.equal('Men like you can never change!');
-        expect(messageLog[0].roomname).to.equal('main');
+        expect(messageLog[0].name).to.equal('main');
+        expect(messageLog[0].username).to.equal('Valjean');
         done();
       });
     });
