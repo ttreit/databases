@@ -12,6 +12,8 @@ router.get('/users', controller.users.get);
 
 router.post('/users', controller.users.post);
 
+router.get('/test', controller.test.get);
+
 
 module.exports = router;
 
