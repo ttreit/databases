@@ -5,3 +5,8 @@ INSERT INTO messages (text, user_id, room_id) VALUES ('If a musician can trip ov
 INSERT INTO users (name) VALUES ('Liam');
 SELECT id FROM users WHERE name = 'Wade';
 SELECT users.name, rooms.name, messages.text FROM users INNER JOIN messages ON users.id = messages.user_id INNER JOIN rooms ON rooms.id = messages.room_id;
+CREATE TABLE `test`(
+  `id` INT AUTO_INCREMENT,
+  `testname` VARCHAR(100),
+  PRIMARY KEY(`id`)
+);
