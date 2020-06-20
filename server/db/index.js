@@ -11,8 +11,6 @@ connection.connect();
 
 connection.query('SELECT * FROM users', (err, rows, fields) => {
   if (err) { throw err; }
-  console.log('rows: ', rows);
-  //console.log('fields: ', fields);
 });
 
 module.exports = connection;
