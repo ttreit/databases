@@ -46,7 +46,11 @@ module.exports = {
         });
     },
     post: function (body, callback) {
-      db.query(`INSERT INTO users (username) VALUES ('${body.username}')`);
+      db.query(`INSERT INTO users (username) VALUES ('${body.username}')`)
+        .then(callback())
+        .catch((error) => {
+          console.log('Caught an error: ', error);
+        });
     }
   },
 
