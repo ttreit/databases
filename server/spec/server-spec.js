@@ -72,8 +72,6 @@ describe('Persistent Node Chat Server', function() {
       if (err) { throw err; }
       request('http://127.0.0.1:3000/classes/users', function(err, results, body) {
         var userLog = JSON.parse(body);
-        console.log('***** userLog: ', userLog);
-
         expect(userLog[0].username).to.not.equal('');
         done();
       });
