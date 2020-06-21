@@ -34,10 +34,6 @@ module.exports = {
       models.test.get((results) => {
         res.status(200).end();
       });
-
     }
   }
-
-
 };
-
