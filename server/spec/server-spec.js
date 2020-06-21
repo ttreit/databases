@@ -65,7 +65,7 @@ describe('Persistent Node Chat Server', function() {
     });
   });
 
-  it('Should output all users from the DB', function(done) {
+  it('Should output users from the DB', function(done) {
     var queryString = "SELECT * FROM users";
     var queryArgs = [];
     dbConnection.query(queryString, queryArgs, function (err) {
@@ -77,6 +77,22 @@ describe('Persistent Node Chat Server', function() {
       });
     });
   });
+
+  it('Should post a user to the DB', function(done) {
+    var queryString = 'INSERT INTO users (username) VALUES (?)';
+    var queryArgs = ['Joey Test User'];
+
+    dbConnection.query(queryString, queryArgs, function(err) {
+      if (err) { throw err; }
+      request('http://127.0.0.1:3000/classes/users',
+      function(error, response, body) {
+        var data = JSON.parse(body);
+        console.log('***ParseBody : ', data);
+        expect(data[data.length-1].username).to.equal('Joey Test User');
+        done();
+      })
+    })
+  })
 
   it('Should output all messages from the DB', function(done) {
     // Let's insert a message into the db
