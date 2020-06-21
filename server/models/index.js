@@ -19,26 +19,30 @@ module.exports = {
     },
     post: function (body, callback) {
       db.query(`SELECT id FROM users WHERE username = '${body.username}'`)
-      .then((data) => {
-        let userId;
-        [userId] = data;
-        userId = userId[0]['id'];
-        console.log('UserId: ', userId);
-      })
+        .then((data) => {
+          let userId;
+          [userId] = data;
+          userId = userId[0]['id'];
+          console.log('UserId: ', userId);
+          return userId;
+        })
+        .then((userId) => {
+          db.query(`SELECT id FROM rooms WHERE name = '${body.roomname}'`)
+            .then((data2) => {
+              let roomId;
+              [roomId] = data2;
+              roomId = roomId[0]['id'];
+              console.log('RoomId: ', roomId);
+              console.log('UserId2: ', userId);
+              return [userId, roomId];
+            }).then((ids) => {
+              db.query(`INSERT INTO messages (text, user_id, room_id) VALUES ('${body.message}', ${ids[0]}, ${ids[1]});`);
+              return 'Done!';
+            }).then((done) => {
+              callback(done);
+            });
+        });
     }
-
-      // db.query(`SELECT id FROM users WHERE username = '${body.username}';`, (err, results, fields) => {
-      //   let userId = (results);
-      //   userId = userId[0]['id'];
-      //   db.query(`SELECT id FROM rooms WHERE name = '${body.roomname}';`, (err, results, fields) => {
-      //     let roomId = (results);
-      //     roomId = roomId[0]['id'];
-      //     db.query(`INSERT INTO messages (text, user_id, room_id) VALUES ('${body.message}', ${userId}, ${roomId});`, (err, results, fields) => {
-      //       if (err) { throw error; }
-      //       callback();
-      //     });
-      //   });
-      // });
 
   },
 
