@@ -1,16 +1,11 @@
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
+var Sequelize = require('sequelize');
+module.exports = new Sequelize('chat', 'student', 'student', {
   host: 'localhost',
-  user: 'student',
-  password: 'student',
-  database: 'chat'
+  dialect: 'mysql',
+
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
 });
-
-connection.connect();
-
-connection.query('SELECT * FROM users', (err, rows, fields) => {
-  if (err) { throw err; }
-});
-
-module.exports = connection;
