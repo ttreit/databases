@@ -1,15 +1,18 @@
-/* You'll need to
- *   npm install sequelize
- * before running this example. Documentation is at http://sequelizejs.com/
- */
-
 var Sequelize = require('sequelize');
-var db = new Sequelize('chatter', 'root', '');
-/* TODO this constructor takes the database name, username, then password.
- * Modify the arguments if you need to */
+var db = new Sequelize('chat', 'student', 'student', {
+  host: 'localhost',
+  dialect: 'mysql',
+
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
 
 /* first define the data structure by giving property names and datatypes
  * See http://sequelizejs.com for other datatypes you can use besides STRING. */
+
 var User = db.define('User', {
   username: Sequelize.STRING
 });
