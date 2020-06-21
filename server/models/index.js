@@ -1,12 +1,21 @@
 var db = require('../db');
+var Sequelize = require('sequelize');
+
+db.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch(err => console.log('Error: ', err))
 
 module.exports = {
   messages: {
     get: function (callback) {
-      db.query(`SELECT users.username, rooms.name, messages.text FROM users INNER JOIN messages ON users.id = messages.user_id INNER JOIN rooms ON rooms.id = messages.room_id;`, (err, results, fields) => {
-        if (err) { throw error; }
+      db.query(`SELECT users.username, rooms.name, messages.text FROM users INNER JOIN messages ON users.id = messages.user_id INNER JOIN rooms ON rooms.id = messages.room_id;`)
+      .then((message) => {
+      let results;
+        [results] = message;
         callback(results);
-      });
+      }).catch((message) => {
+        console.log('catch******: ', message)
+      })
     },
     post: function (body, callback) {
       db.query(`SELECT id FROM users WHERE username = '${body.username}';`, (err, results, fields) => {
