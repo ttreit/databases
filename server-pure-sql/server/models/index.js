@@ -44,7 +44,6 @@ module.exports = {
     get: function (callback) {
       db.query('SELECT * FROM test', (err, results, fields) => {
         if (err) { throw err; }
-        console.log('***** test results: ', results);
         callback(results);
       });
     }
