@@ -3,7 +3,12 @@
 
 var mysql = require('mysql');
 var request = require('request'); // You might need to npm install the request module!
+var chai = require('chai');
 var expect = require('chai').expect;
+var chaiHttp = require('chai-http');
+var should = chai.should();
+chai.use(chaiHttp);
+
 
 describe('Persistent Node Chat Server', function() {
   var dbConnection;
@@ -16,7 +21,7 @@ describe('Persistent Node Chat Server', function() {
     });
     dbConnection.connect();
 
-    var tablename = "messages"; // TODO: fill this out
+    var tablename = 'messages'; // TODO: fill this out
 
     /* Empty the db table before each test so that multiple tests
      * (or repeated runs of the tests) won't screw each other up: */
@@ -65,8 +70,18 @@ describe('Persistent Node Chat Server', function() {
     });
   });
 
+  it('Should return a status of 200 after a request', function(done) {
+    chai.request('http://127.0.0.1:3000/classes/')
+      .get('/users')
+      .end((err, res) => {
+        console.log('RES**** ', res);
+        res.should.have.status(200);
+        done();
+      });
+  });
+
   it('Should output users from the DB', function(done) {
-    var queryString = "SELECT * FROM users";
+    var queryString = 'SELECT * FROM users';
     var queryArgs = [];
     dbConnection.query(queryString, queryArgs, function (err) {
       if (err) { throw err; }
@@ -85,18 +100,17 @@ describe('Persistent Node Chat Server', function() {
     dbConnection.query(queryString, queryArgs, function(err) {
       if (err) { throw err; }
       request('http://127.0.0.1:3000/classes/users',
-      function(error, response, body) {
-        var data = JSON.parse(body);
-        console.log('***ParseBody : ', data);
-        expect(data[data.length-1].username).to.equal('Joey Test User');
-        done();
-      })
-    })
-  })
+        function(error, response, body) {
+          var data = JSON.parse(body);
+          expect(data[data.length - 1].username).to.equal('Joey Test User');
+          done();
+        });
+    });
+  });
 
   it('Should output all messages from the DB', function(done) {
     // Let's insert a message into the db
-    var queryString = "INSERT INTO messages (text, user_id, room_id) VALUES (?, ?, ?)";
+    var queryString = 'INSERT INTO messages (text, user_id, room_id) VALUES (?, ?, ?)';
     var queryArgs = ['Men like you can never change!', 13, 4];
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave
