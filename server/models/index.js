@@ -14,7 +14,6 @@ module.exports = {
           [results] = message;
           callback(results);
         }).catch((message) => {
-          console.log('catch******: ', message);
         });
     },
     post: function (body, callback) {
@@ -23,7 +22,6 @@ module.exports = {
           let userId;
           [userId] = data;
           userId = userId[0]['id'];
-          console.log('UserId: ', userId);
           return userId;
         })
         .then((userId) => {
@@ -32,8 +30,6 @@ module.exports = {
               let roomId;
               [roomId] = data2;
               roomId = roomId[0]['id'];
-              console.log('RoomId: ', roomId);
-              console.log('UserId2: ', userId);
               return [userId, roomId];
             }).then((ids) => {
               db.query(`INSERT INTO messages (text, user_id, room_id) VALUES ('${body.message}', ${ids[0]}, ${ids[1]});`);
